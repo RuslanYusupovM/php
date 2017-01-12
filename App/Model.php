@@ -53,7 +53,6 @@ abstract class Model
         } else {
             $sql = 'SELECT * FROM ' . static::$table . ' ORDER BY id DESC LIMIT ' . (int)$limit;
         }
-        var_dump($sql);
         return $db->query($sql, [], static::class);
     }
 
