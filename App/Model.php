@@ -45,4 +45,15 @@ abstract class Model
         return $res;
     }
 
+    public static function findLimit($limit = null)
+    {
+        $db = new Db();
+        if (false === $limit) {
+            $sql = 'SELECT * FROM ' . static::$table;
+        } else {
+            $sql = 'SELECT * FROM ' . static::$table . ' ORDER BY id DESC LIMIT ' . (int)$limit;
+        }
+        return $db->query($sql, [], static::class);
+    }
+
 }

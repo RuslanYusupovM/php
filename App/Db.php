@@ -29,7 +29,6 @@ class Db
         }
     }
 
-    //2-й пункт дз
     public function execute($query, $params = [])
     {
         $sth = $this->dbh->prepare($query);
