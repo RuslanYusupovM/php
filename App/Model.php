@@ -42,7 +42,7 @@ abstract class Model
         $sql = 'SELECT * FROM ' . static::$table . ' WHERE id=:id';
         $record = $db->query($sql, ['id' => $id], static::class);
         $res = !empty($record) ? $record : 'false';
-        return $res;
+        return $res[0];
     }
 
     public static function findLimit($limit = false)
