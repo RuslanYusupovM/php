@@ -21,19 +21,18 @@ abstract class Model
         return (int)$db->query($sql, [], static::class)[0]->num;
     }
 
-    public static function updateLastName($text, $id)
+    public static function updateLastName($text, $firstname)
     {
         $db = new Db();
-        $query = 'UPDATE ' . static::$table . ' SET lastname=:text WHERE id=:id';
-        return $db->execute($query, ['text' => $text, 'id' => $id]);
+        $query = 'UPDATE ' . static::$table . ' SET lastname=:text WHERE firstname=:firstname';
+        return $db->execute($query, ['text' => $text, 'firstname' => $firstname]);
     }
 
-    public static function insert($id, $column1, $column2)
+    public static function insert($column1, $column2, $text1, $text2)
     {
         $db = new Db();
-        $query = 'INSERT INTO ' . static::$table . ' VALUES (:id, :column1, :column2)';
-        echo $query;
-        return $db->execute($query, ['id' => $id, 'column1' => $column1, 'column2' => $column2]);
+        $query = 'INSERT INTO ' . static::$table . ' (' . (string)$column1 . ', ' . (string)$column2 . ') VALUES (:text1, :text2)';
+        return $db->execute($query, ['text1' => $text1, 'text2' => $text2]);
     }
 
     public static function findById($id)
